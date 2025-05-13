@@ -61,4 +61,33 @@ In a relational database, tables are linked to each other through keys.
 
 Hard-Level Tasks (10)
 
+CREATE TABLE Customers (
+ID int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Age int,
+CONSTRAINT CHK_Age CHECK(Age >= 18)
+)
 
+
+Create table OrderDetails (
+ID int IDENTITY(100,10),
+LastName varchar(255)
+PRIMARY KEY(ID, LastName)
+)
+
+COALESCE() can take any number of arguments, while ISNULL() takes only two arguments. COALESCE() only evaluates the expressions that are not NULL, while ISNULL() evaluates all of the expressions in the list. 
+COALESCE() is typically more efficient than ISNULL() when one or more of the expressions in the list are NULL.
+
+CREATE TABLE Employees 
+(
+EmpID INT PRIMARY KEY,
+Email varchar(50) UNIQUE
+)
+
+ALTER TABLE Customers 
+ADD CONSTRAINT FK_CustomerOrderDetails
+FOREIGN KEY(ID, LastName)
+REFERENCES OrderDetails(ID, LastName)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
