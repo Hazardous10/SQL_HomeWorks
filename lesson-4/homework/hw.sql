@@ -18,3 +18,17 @@ ORDER BY Price ASC
 
 SELECT * FROM SQL_LESSONS.dbo.Employees
 WHERE Salary >= 60000 AND DepartmentName = 'HR'
+
+SELECT ISNULL(Email, 'noemail@example.com') AS Email
+FROM SQL_LESSONS.dbo.Employees
+
+SELECT * FROM SQL_LESSONS.dbo.Products_Discounted
+WHERE Price BETWEEN 50 AND 100
+
+
+SELECT DISTINCT Category, ProductName 
+FROM SQL_LESSONS.dbo.Products_Discounted
+
+SELECT DISTINCT Category, ProductName 
+FROM SQL_LESSONS.dbo.Products_Discounted
+ORDER BY ProductName DESC
