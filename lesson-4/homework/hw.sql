@@ -50,7 +50,6 @@ ORDER BY Salary DESC
 OFFSET 10 rows
 FETCH NEXT 10 ROWS ONLY
 
-
 SELECT * FROM Products
 WHERE Price <= 1000 AND StockQuantity > 50
 ORDER BY StockQuantity ASC
