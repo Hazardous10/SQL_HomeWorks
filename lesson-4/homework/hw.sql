@@ -62,3 +62,25 @@ WHERE DepartmentName IN ('HR', 'IT','Finance')
 
 SELECT * FROM Customers
 ORDER BY City ASC, PostalCode DESC
+
+Hard-Level Tasks
+
+SELECT TOP 5 * FROM Sales 
+ORDER BY SaleAmount DESC
+
+SELECT FirstName + ' ' + LastName FROM Employees AS FullName 
+
+SELECT DISTINCT Category, ProductName, Price FROM Products
+WHERE Price > 50
+
+SELECT * FROM Products
+WHERE Price < (SELECT AVG(Price) * 0.10 FROM Products)
+
+SELECT * FROM Employees
+WHERE Age < 30 AND DepartmentName IN ('HR', 'IT')
+
+SELECT * FROM Customers 
+WHERE Email LIKE '%gmail.com%'
+
+SELECT * FROM Employees
+WHERE Salary > ALL (SELECT Salary FROM Employees WHERE DepartmentName = 'Sales')
