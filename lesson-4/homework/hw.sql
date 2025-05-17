@@ -84,3 +84,7 @@ WHERE Email LIKE '%gmail.com%'
 
 SELECT * FROM Employees
 WHERE Salary > ALL (SELECT Salary FROM Employees WHERE DepartmentName = 'Sales')
+
+SELECT * FROM Orders 
+WHERE OrderDate BETWEEN DATEADD(DAY, -180, (SELECT MAX(OrderDate) FROM Orders))
+AND (SELECT MAX(OrderDate) FROM Orders);
