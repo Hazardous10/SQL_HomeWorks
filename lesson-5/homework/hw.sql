@@ -25,4 +25,38 @@ FROM Products
 SELECT StockQuantity, IIF(StockQuantity > 100, 'Yes', 'No')
 FROM Products_Discounted
 
+Medium-Level Tasks
+  
+SELECT ProductName From Products
+UNION
+SELECT ProductName FROM Products_Discounted
 
+SELECT * FROM Products
+EXCEPT
+SELECT * FROM Products_Discounted
+
+UPDATE Employees
+SET Salary = (Salary * 0.1) + Salary
+WHERE DepartmentName = 'HR' OR EmployeeID = 5
+
+Hard-Level Tasks
+
+SELECT ProductID, SaleAmount,
+CASE
+WHEN SaleAmount > 500 THEN 'Top Tier'
+WHEN SaleAmount BETWEEN 200 AND 500 THEN 'Mid Tier'
+ELSE 'Low Tier'
+END AS Tier
+FROM Sales;
+
+SELECT  CustomerID FROM Orders
+EXCEPT
+SELECT  CustomerID FROM Sales
+
+SELECT CustomerID, Quantity,
+CASE
+WHEN Quantity = 1 THEN 0.03
+WHEN Quantity BETWEEN 2 AND 3 THEN 0.05
+ELSE 0.07
+END AS DiscountPercentage
+FROM Orders
