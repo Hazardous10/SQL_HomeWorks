@@ -80,3 +80,22 @@ SELECT DepartmentName, AVG(Salary) AS avgSalaryExpense
 FROM Employees
 GROUP BY DepartmentName
 HAVING AVG(Salary) > 60000
+
+Hard-Level Tasks (6)
+
+SELECT 
+Category, AVG(Price) AS avgPrice
+FROM Products
+GROUP BY Category
+HAVING AVG(Price) > 150
+
+SELECT 
+CustomerID, SUM(SaleAmount) AS totalAMount
+FROM Sales
+GROUP BY CustomerID
+HAVING SUM(SaleAmount) > 1500
+
+SELECT DepartmentName, SUM(Salary) AS totalSalary, AVG(Salary) AS avgSalary
+FROM Employees
+GROUP BY DepartmentName
+HAVING AVG(Salary) > 65000
