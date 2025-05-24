@@ -99,3 +99,31 @@ SELECT DepartmentName, SUM(Salary) AS totalSalary, AVG(Salary) AS avgSalary
 FROM Employees
 GROUP BY DepartmentName
 HAVING AVG(Salary) > 65000
+
+SELECT 
+o.custid,
+SUM(CASE WHEN o.freight > 50 THEN od.unitprice * od.qty ELSE 0 END) AS totalHighFreight,
+MIN(od.unitprice * od.qty) AS leastPurchase
+FROM Sales.Orders o
+JOIN Sales.OrderDetails od ON o.orderid = od.orderid
+GROUP BY o.custid
+
+SELECT 
+YEAR(o.orderdate) AS orderYear, 
+MONTH(o.orderdate) AS orderMonth, 
+SUM(od.unitprice * od.qty) AS totalSale,
+COUNT(DISTINCT od.productid) AS uniqueProducts 
+FROM Sales.Orders o
+JOIN Sales.OrderDetails od ON o.orderid = od.orderid
+GROUP BY YEAR(o.orderdate), MONTH(o.orderdate)
+HAVING COUNT(DISTINCT od.productid) >= 2
+
+
+SELECT 
+YEAR(o.orderdate) AS orderYear,
+MIN(od.qty) AS minQty,
+MAX(od.qty) AS maxQty
+FROM Sales.OrderDetails od
+JOIN Sales.Orders o ON od.orderid = o.orderid
+GROUP BY YEAR(o.orderdate)
+ORDER BY orderYear
