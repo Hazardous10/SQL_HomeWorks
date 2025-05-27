@@ -94,3 +94,51 @@ FOR district_name IN ([Bektemir],[Chilonzor], [Yakkasaroy])
 AS PivotTable
 
 SELECT * FROM Population_Each_City
+
+Hard-Level Tasks
+
+SELECT TOP 3 CustomerID, SUM(TotalAmount) AS totalAmount FROM dbo.Invoices
+GROUP BY CustomerID
+ORDER BY totalAmount DESC
+
+SELECT district_name, [2012], [2013]
+INTO Population_Each_Year
+FROM
+(
+SELECT district_name,[year], population
+FROM city_population
+) AS SourceTable
+PIVOT
+(
+SUM(population)
+FOR [year] IN ([2012], [2013])
+) AS PivotTable
+
+SELECT 
+ district_name, 
+ [year], 
+ population
+FROM
+ Population_Each_Year
+UNPIVOT
+(
+ population FOR [year] IN ([2012], [2013])
+) AS UnpivotTable
+
+SELECT p.ProductName,
+COUNT(s.ProductID) AS numberOfSales
+FROM Products p
+JOIN Sales s ON p.ProductID = s.ProductID
+GROUP BY ProductName
+
+SELECT 
+  [year],
+  district_name,
+  population
+FROM
+ Population_Each_City
+UNPIVOT
+(
+population FOR district_name IN ([Bektemir],[Chilonzor], [Yakkasaroy])
+) AS UnpivotTable
+
